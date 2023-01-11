@@ -1,6 +1,7 @@
 package g6micronautdata
 
 import javax.inject.Inject
+import java.time.LocalDate
 
 class PersonController {
 
@@ -13,9 +14,23 @@ class PersonController {
         [people: people]
     }
 
-    def bob() {
-        def bob = personRepository.findByForename('Bob')
-        log.info("Found a Bob ${bob.surname}")
-        [bob: bob]
+    def show() {
+        def person = personRepository.findById(params.id)
+        person.ifPresent {
+            log.info("Found ${it.forename} ${it.surname}")
+        }
+        [person: person.orElseGet { new Person() }]
     }
+
+    def create() {}
+
+    def save( PersonCommand person ) {
+        personRepository.save( person.forename,  person.surname,  LocalDate.now() )
+    }
+}
+
+class PersonCommand {
+    String forename
+    String surname
+    LocalDate dob
 }

@@ -16,9 +16,9 @@ import java.time.LocalDate
 class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( ref = 'PERSON_ID_SEQ' )
     @NonNull
-    Integer id
+    Long id
 
     @NonNull
     @NotBlank

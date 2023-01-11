@@ -62,7 +62,7 @@ dependencies {
     profile "org.grails.profiles:web"
     runtimeOnly "org.glassfish.web:el-impl:2.2.1-b05"
     runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.apache.tomcat:tomcat-jdbc"
+    //runtimeOnly "org.apache.tomcat:tomcat-jdbc" REPLACED BELOW WITH io.micronaut.sql:micronaut-jdbc-tomcat
     runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:3.4.7"
     testImplementation "io.micronaut:micronaut-inject-groovy"
@@ -80,6 +80,7 @@ dependencies {
     compileOnly "io.micronaut.data:micronaut-data-processor:3.9.3"
     implementation "io.micronaut.data:micronaut-data-jdbc:3.9.3"
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation "io.micronaut.sql:micronaut-jdbc-tomcat:4.7.2"
 }
 
 
