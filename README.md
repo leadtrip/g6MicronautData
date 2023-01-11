@@ -1,0 +1,1 @@
+## Grails 6 with micronaut data
