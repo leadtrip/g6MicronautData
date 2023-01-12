@@ -3,6 +3,8 @@ package g6micronautdata
 import javax.inject.Inject
 import java.time.LocalDate
 
+import static org.springframework.http.HttpStatus.CREATED
+
 class PersonController {
 
     @Inject
@@ -26,6 +28,14 @@ class PersonController {
 
     def save( PersonCommand person ) {
         personRepository.save( person.forename,  person.surname,  LocalDate.now() )
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Person'), person.id])
+                redirect person
+            }
+            '*' { respond person, [status: CREATED] }
+        }
     }
 }
 

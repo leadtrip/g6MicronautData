@@ -16,7 +16,9 @@ class BootStrap {
 
     @Transactional
     void addPeople() {
-        def sql = Sql.newInstance(url: grailsApplication.config.datasources.oracle.url, user: 'mike_data', password: 'mike_data')
+        // this is the micronaut dataSource
+        def oracleConfig = grailsApplication.config.datasources.oracle
+        def sql = Sql.newInstance(url: oracleConfig.url, user: oracleConfig.username, password: oracleConfig.password)
         try {
             def personTable = sql.firstRow('select table_name from user_tables where table_name =? ', 'PERSON')
             if( !personTable ) {
@@ -24,15 +26,9 @@ class BootStrap {
                                         forename VARCHAR(50),
                                         surname VARCHAR(50),
                                         dob DATE )'''
-            }
-            def personSeq = sql.firstRow("SELECT count(*) personSeq  FROM user_sequences WHERE sequence_name =?" , 'PERSON_ID_SEQ')
-            if( !personSeq ) {
                 sql.execute( 'create sequence PERSON_ID_SEQ start with 1 increment by 1' )
-            }
-            def totalPeople = sql.firstRow('select count(*) total from person')
-            if( !totalPeople.TOTAL ) {
-                sql.executeInsert("insert into PERSON (id, forename, surname, dob) values ( 1, 'Bob', 'Yellow', '1974-04-12' )")
-                sql.executeInsert("insert into PERSON (id, forename, surname, dob) values ( 2, 'Sue', 'Orange', '1912-07-01' )")
+                sql.executeInsert("insert into PERSON (id, forename, surname, dob) values ( PERSON_ID_SEQ.nextval, 'Bob', 'Yellow', '12-Apr-1974' )")
+                sql.executeInsert("insert into PERSON (id, forename, surname, dob) values ( PERSON_ID_SEQ.nextval, 'Sue', 'Orange', '01-Jul-1912' )")
             }
         }
         finally {
