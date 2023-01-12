@@ -29,7 +29,6 @@ class Person {
     @NotBlank
     String surname
 
-    @DateCreated
     @NonNull
     @NotNull
     LocalDate dob
