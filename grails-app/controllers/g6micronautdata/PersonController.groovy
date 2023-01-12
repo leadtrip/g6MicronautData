@@ -26,6 +26,8 @@ class PersonController {
 
     def save( PersonCommand person ) {
         personRepository.save( person.forename,  person.surname,  LocalDate.now() )
+
+        redirect 'index'
     }
 }
 

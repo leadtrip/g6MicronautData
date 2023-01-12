@@ -2,6 +2,7 @@ package g6micronautdata
 
 import groovy.transform.CompileStatic
 import io.micronaut.core.annotation.NonNull
+import io.micronaut.core.annotation.Nullable
 import io.micronaut.data.annotation.DateCreated
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
@@ -16,8 +17,8 @@ import java.time.LocalDate
 class Person {
 
     @Id
-    @GeneratedValue( ref = 'PERSON_ID_SEQ' )
-    @NonNull
+    @GeneratedValue
+    @Nullable
     Long id
 
     @NonNull
