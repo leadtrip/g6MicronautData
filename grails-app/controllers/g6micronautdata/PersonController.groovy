@@ -1,9 +1,6 @@
 package g6micronautdata
 
 import javax.inject.Inject
-import java.time.LocalDate
-
-import static org.springframework.http.HttpStatus.CREATED
 
 class PersonController {
 
@@ -11,7 +8,7 @@ class PersonController {
     PersonRepository personRepository
 
     def index() {
-        List<Person> people = personRepository.findAll()
+        Iterable<Person> people = personRepository.findAll()
         log.info("Found ${people.size()} people")
         [people: people]
     }
@@ -26,21 +23,9 @@ class PersonController {
 
     def create() {}
 
-    def save( PersonCommand person ) {
-        personRepository.save( person.forename,  person.surname,  LocalDate.now() )
+    def save( Person person ) {
+        person = personRepository.save( person )
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Person'), person.id])
-                redirect person
-            }
-            '*' { respond person, [status: CREATED] }
-        }
+        redirect (action: 'show', params: [id: person.id])
     }
-}
-
-class PersonCommand {
-    String forename
-    String surname
-    LocalDate dob
 }

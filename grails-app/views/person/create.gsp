@@ -19,7 +19,11 @@
             </div>
             <div class="fieldcontain required">
                 <label for="surname">Surname<span class="required-indicator">*</span></label>
-                </label><input type="text" name="surname" value="" required="" maxlength="50" id="surname" />
+                <input type="text" name="surname" value="" required="" maxlength="50" id="surname" />
+            </div>
+            <div class="fieldcontain required">
+                <label for="dob">Date of birth<span class="required-indicator">*</span></label>
+                <g:datePicker name="dob" precision="day" />
             </div>
         </fieldset>
         <fieldset class="buttons">

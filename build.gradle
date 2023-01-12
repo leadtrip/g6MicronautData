@@ -35,7 +35,7 @@ configurations {
 }
 
 dependencies {
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    //developmentOnly("org.springframework.boot:spring-boot-devtools")      THIS CAUSES ISSUES WITH SAVING DATABASE ENTITIES WHEN ENABLED
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
     implementation "org.springframework.boot:spring-boot-starter-logging"
@@ -62,7 +62,7 @@ dependencies {
     profile "org.grails.profiles:web"
     runtimeOnly "org.glassfish.web:el-impl:2.2.1-b05"
     runtimeOnly "com.h2database:h2"
-    //runtimeOnly "org.apache.tomcat:tomcat-jdbc" REPLACED BELOW WITH io.micronaut.sql:micronaut-jdbc-tomcat
+    //runtimeOnly "org.apache.tomcat:tomcat-jdbc"           REPLACED BELOW WITH io.micronaut.sql:micronaut-jdbc-tomcat
     runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:3.4.7"
     testImplementation "io.micronaut:micronaut-inject-groovy"

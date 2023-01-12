@@ -2,7 +2,6 @@ package g6micronautdata
 
 import groovy.transform.CompileStatic
 import io.micronaut.core.annotation.NonNull
-import io.micronaut.data.annotation.DateCreated
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
 import io.micronaut.data.annotation.MappedEntity
